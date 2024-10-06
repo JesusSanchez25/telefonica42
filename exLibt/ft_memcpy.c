@@ -9,6 +9,8 @@
 /*   Updated: 2024/09/25 17:24:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -27,7 +29,7 @@ void	*ft_memcpy(void *dest, const void *src, unsigned long n)
 	return (dest);
 }
 
-// int	main() {
+// int	main(void) {
 // 	char cadena1[] = "Hola, mundo!";
 // 	char cadena2[] = "";
 
@@ -35,5 +37,5 @@ void	*ft_memcpy(void *dest, const void *src, unsigned long n)
 // 	ft_memcpy(cadena2, cadena1, '\0');
 
 // 	printf("Cadena copiada: %s\n", cadena2);
-// 	return 0;
+// 	return (0);
 // }

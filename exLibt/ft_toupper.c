@@ -9,6 +9,8 @@
 /*   Updated: 2024/09/25 20:49:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 #include <stdio.h>
 
 int	ft_toupper(int c)
@@ -24,5 +26,5 @@ int	ft_toupper(int c)
 	char ch = 'a';
 	char upper_ch = ft_toupper(ch);
 	printf("Uppercase equivalent of '%c' is	'%c'\n", ch, upper_ch);
-	return 0;
+	return (0);
 } */

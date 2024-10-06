@@ -9,13 +9,12 @@
 /*   Updated: 2024/09/29 18:27:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t num, size_t size)
 {
-	char	*array;
-	int		i;
+	unsigned char	*array;
+	size_t			i;
 
 	i = 0;
 	array = malloc(size * num);
@@ -27,21 +26,23 @@ void	*ft_calloc(size_t num, size_t size)
 	return ((void *)array);
 }
 
-// int main() {
-//     int *ptr;
-//     int n = 5;
+// int	main(void)
+// {
+// 	int	*ptr;
+// 	int	n;
 
-//     ptr = (int *)ft_calloc(n, sizeof(int));
-//     if (ptr == NULL) {
-//         printf("Error al asignar memoria.\n");
-//         return 1;
-//     }
-
-//     // Los elementos del arreglo estarán inicializados a 0
-//     for (int i = 0; i < n; i++) {
-//         printf("%d ", ptr[i]);
-//     }
-
-//     free(ptr);
-//     return 0;
+// 	n = 5;
+// 	ptr = (int *)ft_calloc(n, sizeof(int));
+// 	if (ptr == NULL)
+// 	{
+// 		printf("Error al asignar memoria.\n");
+// 		return (1);
+// 	}
+// 	// Los elementos del arreglo estarán inicializados a 0
+// 	for (int i = 0; i < n; i++)
+// 	{
+// 		printf("%d ", ptr[i]);
+// 	}
+// 	free(ptr);
+// 	return (0);
 // }

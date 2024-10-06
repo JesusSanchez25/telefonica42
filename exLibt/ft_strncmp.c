@@ -9,6 +9,8 @@
 /*   Updated: 2024/09/25 21:19:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -49,5 +51,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 				printf("str1 is less than str2.\n");
 		}
 
-		return 0;
+		return (0);
 } */

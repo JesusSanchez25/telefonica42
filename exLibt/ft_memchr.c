@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -41,5 +42,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 // 				printf("El byte elegido no fue encontrado.\n");
 // 		}
 
-// 		return 0;
+// 		return (0);
 // }

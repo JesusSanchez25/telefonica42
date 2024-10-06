@@ -9,9 +9,7 @@
 /*   Updated: 2024/09/18 21:04:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stddef.h>
-#include <string.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -31,5 +29,5 @@ void	ft_bzero(void *s, size_t n)
 //     ft_bzero(buffer, 10);
 //     buffer[0] = '\0';
 //     printf("Buffer despues de bzero: %s\n", buffer);
-//     return 0;
+//     return (0);
 // }

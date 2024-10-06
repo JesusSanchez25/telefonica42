@@ -9,6 +9,8 @@
 /*   Updated: 2024/09/25 20:59:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -43,5 +45,5 @@ char	*ft_strchr(const char *s, int c)
 		printf("'o' not found in the string.\n");
 	}
 
-	return 0;
+	return (0);
 } */
