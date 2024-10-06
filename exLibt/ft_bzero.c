@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   bzero.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesusanc <jesusanc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 20:53:53 by jesusanc          #+#    #+#             */
-/*   Updated: 2024/09/16 21:03:03 by jesusanc         ###   ########.fr       */
+/*   Created: 2024/09/18 21:04:59 by marvin            #+#    #+#             */
+/*   Updated: 2024/09/18 21:04:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
+#include <stddef.h>
+#include <string.h>
 
-void ft_bzero(void *s, unsigned long n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned long	i;
+	unsigned char	*ptr;
 
-	i = 0;
-	while (i < n)
+	ptr = (unsigned char *)s;
+	while (n-- > 0)
 	{
-		((unsigned char *)s)[i] = 0;
-		i++;
+		*ptr++ = 0;
 	}
 }
 
-/* #include <stdio.h>
-#include <strings.h>  // Para bzero
+// int main() {
+//     char buffer[10] = "test";
+//     printf("Buffer antes de bzero: %s\n", buffer);
 
-int main() {
-    char buffer[10];
-    
-    // Llena el buffer con ceros
-    ft_bzero(buffer, sizeof(buffer));
-    
-    // Imprime el buffer
-    for (int i = 0; i < sizeof(buffer); i++) {
-        printf("%d ", buffer[i] == 0 ? 0 : 1);
-    }
-    printf("\n");
-    
-    return 0;
-} */
+//     ft_bzero(buffer, 10);
+//     buffer[0] = '\0';
+//     printf("Buffer despues de bzero: %s\n", buffer);
+//     return 0;
+// }
