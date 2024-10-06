@@ -9,6 +9,7 @@
 /*   Updated: 2024/09/29 18:58:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,7 +30,7 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
-	str = malloc(sizeof(char) * strlen(s));
+	str = malloc(sizeof(char) * (strlen(s) + 1));
 	while (s[i] != '\0')
 	{
 		str[i] = s[i];
@@ -39,19 +40,19 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-// int main() {
-// 	char str[] = "Hola, mundo!";
-// 	char *dup;
+int	main(void)
+{
+	char	str[] = "Hola, mundo!";
+	char	*dup;
 
-// 	dup = ft_strdup(str);
-// 	if (dup == NULL) {
-// 		printf("Error al duplicar la cadena.\n");
-// 		return 1;
-// 	}
-
-// 	printf("Cadena original: %s\n", str);
-// 	printf("Cadena duplicada: %s\n", dup);
-
-// 	free(dup);
-// 	return 0;
-// }
+	dup = ft_strdup(str);
+	if (dup == NULL)
+	{
+		printf("Error al duplicar la cadena.\n");
+		return (1);
+	}
+	printf("Cadena original: %s\n", str);
+	printf("Cadena duplicada: %s\n", dup);
+	free(dup);
+	return (0);
+}
