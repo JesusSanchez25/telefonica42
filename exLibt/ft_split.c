@@ -9,73 +9,75 @@
 /*   Updated: 2024/10/08 20:04:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static size_t	contar_palabras(char const *s, char c)
+static size_t	ft_countword(char const *s, char c)
 {
-	size_t	cnt;
-	int		in_word;
+	size_t	count;
 
-	cnt = 0;
-	in_word = 0;
-	while (*s != '\0')
+	if (!*s)
+		return (0);
+	count = 0;
+	while (*s)
 	{
-		if (*s != c && in_word == 0)
-		{
-			cnt++;
-			in_word = 1;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s != c && *s)
+			s++;
 	}
-	return (cnt);
+	return (count);
 }
 
-static char	**rellenar_array(char **arr, char const *s, char c)
+size_t	ft_get_word_len(char const *s, char c)
+{
+	if (ft_strchr(s, c))
+		return (ft_strchr(s, c) - s);
+	return (ft_strlen(s));
+}
+
+static void	ft_freelist(char **lst, int words)
 {
 	int	i;
-	int	word_start;
-	int	word_index;
-	int	in_word;
 
 	i = 0;
-	word_index = 0;
-	in_word = 0;
-	while (s[i])
+	while (i < words)
 	{
-		if (s[i] != c && in_word == 0)
-			word_start = i;
-		if (s[i] != c && in_word == 0)
-			in_word = 1;
-		if ((s[i] == c) && in_word == 1)
-		{
-			arr[word_index] = ft_substr(s, word_start, i - word_start);
-			word_index++;
-			in_word = 0;
-		}
-		if (s[i + 1] == '\0' && in_word == 1)
-			arr[word_index] = ft_substr(s, word_start, i - word_start + 1);
+		free(lst[i]);
 		i++;
 	}
-	return (arr);
+	free(lst);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**finalarraystr;
+	char	**lst;
+	size_t	word_len;
+	int		i;
 	int		word_count;
 
-	if (!s)
+	word_count = ft_countword(s, c);
+	lst = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (!s || !lst)
 		return (NULL);
-	word_count = contar_palabras(s, c);
-	finalarraystr = malloc(sizeof(char *) * (word_count + 1));
-	if (!finalarraystr)
-		return (NULL);
-	if (!rellenar_array(finalarraystr, s, c))
-		return (NULL);
-	finalarraystr[word_count] = NULL;
-	return (finalarraystr);
+	i = 0;
+	while (*s && i < word_count)
+	{
+		while (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			word_len = ft_get_word_len(s, c);
+			lst[i] = ft_substr(s, 0, word_len);
+			if (!lst[i++])
+				return (ft_freelist(lst, i--), NULL);
+			s += word_len;
+		}
+	}
+	lst[i] = NULL;
+	return (lst);
 }
 
 // Comprobar contar palabras
