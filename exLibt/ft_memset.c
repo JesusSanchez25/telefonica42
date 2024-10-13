@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:20:49 by jesusanc          #+#    #+#             */
-/*   Updated: 2024/10/09 20:35:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/10/13 13:37:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	*ft_memset(void *s, int c, unsigned long n)
 	return (s);
 }
 
-/* #include <stdio.h>
-#include <string.h>
+/*
 
 int	main(void) {
 	int array[5];
