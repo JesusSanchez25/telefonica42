@@ -53,13 +53,13 @@ OBJS		= $(SRCS:%.c=%.o)
 FLAGS		= -Wall -Werror -Wextra
 
 $(NAME):
-	gcc $(FLAGS) -c $(SRCS) -I ./
+	cc $(FLAGS) -c $(SRCS) -I ./
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS) $(BNS_OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

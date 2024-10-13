@@ -33,58 +33,49 @@ static size_t	contar_palabras(char const *s, char c)
 	return (cnt);
 }
 
-static char	**liberar_memoria(char **arr)
+static char	**rellenar_array(char **arr, char const *s, char c)
 {
-	size_t	i;
+	int	i;
+	int	word_start;
+	int	word_index;
+	int	in_word;
 
-	if (!arr)
-		return (NULL);
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	return (NULL);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**finalarraystr;
-	int		in_word;
-	int		i;
-	int		word_start;
-	int		word_index;
-	int		length;
-
-	if (!s)
-		return (NULL);
-	finalarraystr = malloc(sizeof(char *) * (contar_palabras(s, c) + 1));
-	if (!finalarraystr)
-		return (NULL);
 	i = 0;
 	word_index = 0;
 	in_word = 0;
 	while (s[i])
 	{
 		if (s[i] != c && in_word == 0)
-		{
 			word_start = i;
+		if (s[i] != c && in_word == 0)
 			in_word = 1;
-		}
-		if ((s[i] == c || s[i + 1] == '\0') && in_word == 1)
+		if ((s[i] == c) && in_word == 1)
 		{
-			length = (s[i] == c) ? i - word_start : i - word_start + 1;
-			finalarraystr[word_index] = ft_substr(s, word_start, length);
-			if (!finalarraystr[word_index])
-				return (liberar_memoria(finalarraystr));
+			arr[word_index] = ft_substr(s, word_start, i - word_start);
 			word_index++;
 			in_word = 0;
 		}
+		if (s[i + 1] == '\0' && in_word == 1)
+			arr[word_index] = ft_substr(s, word_start, i - word_start + 1);
 		i++;
 	}
-	finalarraystr[word_index] = NULL;
+	return (arr);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**finalarraystr;
+	int		word_count;
+
+	if (!s)
+		return (NULL);
+	word_count = contar_palabras(s, c);
+	finalarraystr = malloc(sizeof(char *) * (word_count + 1));
+	if (!finalarraystr)
+		return (NULL);
+	if (!rellenar_array(finalarraystr, s, c))
+		return (NULL);
+	finalarraystr[word_count] = NULL;
 	return (finalarraystr);
 }
 

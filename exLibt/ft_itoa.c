@@ -47,16 +47,34 @@ static void	reversestr(char *str, int len)
 	}
 }
 
+static char	*int_to_charray(int num, char *str, int signo)
+{
+	int	i;
+
+	i = 0;
+	while (num > 0)
+	{
+		str[i++] = (num % 10) + '0';
+		num /= 10;
+	}
+	if (signo)
+		str[i++] = '-';
+	str[i] = '\0';
+	reversestr(str, i);
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		i;
 	int		size;
 	long	num;
 	int		signo;
 
 	num = n;
 	signo = 0;
+	if (num == -2147483648)
+		return (ft_strdup("-2147483648"));
 	if (num == 0)
 		return (ft_strdup("0"));
 	if (num < 0)
@@ -68,16 +86,7 @@ char	*ft_itoa(int n)
 	str = malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (num > 0)
-	{
-		str[i++] = (num % 10) + '0';
-		num /= 10;
-	}
-	if (signo)
-		str[i++] = '-';
-	str[i] = '\0';
-	reversestr(str, i);
+	str = int_to_charray(num, str, signo);
 	return (str);
 }
 
