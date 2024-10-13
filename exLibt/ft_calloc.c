@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdlib.h>
 
 void	*ft_calloc(size_t num, size_t size)
 {
@@ -18,6 +19,10 @@ void	*ft_calloc(size_t num, size_t size)
 
 	i = 0;
 	array = malloc(size * num);
+	if (!array)
+	{
+		return (NULL);
+	}
 	while (i < (size * num))
 	{
 		array[i] = 0;
