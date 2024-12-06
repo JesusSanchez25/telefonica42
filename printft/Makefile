@@ -22,7 +22,6 @@ TEST_SRC = main.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	gcc $(FLAGS) -c $(SRCS) -I ./
 	ar rc $(NAME) $(OBJS)
 
 $(TEST): $(NAME) $(TEST_SRC)
