@@ -44,15 +44,19 @@ int	print_int(va_list args)
 {
 	int		num;
 	char	*num_str;
+	int		len;
 
 	num = va_arg(args, int);
 	num_str = ft_itoa(num);
 	if (num_str)
 	{
 		write(1, num_str, ft_strlen(num_str));
+		len = ft_strlen(num_str);
 		if (num < 0 && num != -2147483648)
-			return (ft_strlen(num_str) + 1);
-		return (ft_strlen(num_str));
+			len += 1;
+		if (num != -2147483648)
+			free(num_str);
+		return (len);
 	}
 	return (0);
 }
