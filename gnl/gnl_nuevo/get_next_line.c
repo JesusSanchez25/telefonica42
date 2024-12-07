@@ -44,7 +44,8 @@ char *read_line(int fd, char **unused_chars)
 		{
 			// printf("Se han leido 0 caracteres\n");
 			// printf("Unused chars vale: %s\n", *unused_chars);
-			break ;
+			free_memory(&buffer);
+			return (*unused_chars);
 		}
 		if (bytes_read < 0)
 		{
@@ -73,10 +74,14 @@ char *extract_line_from_unused_chars(char **unused_chars)
 	// printf("Se ha entrado a extraer la linea\n");
 	newline_pos = ft_strrchr(*unused_chars, '\n') + 1;
 	idx = newline_pos - *unused_chars;
-	if (idx > 0)
+	// printf("EXT - Unused chars: %s\n", *unused_chars);
+	// // printf("EXT - New line:%s\n", newline_pos);
+	// printf("EXT - Final de linea: %d\n", idx);
+	if (ft_strlen(*unused_chars) > 0 && newline_pos)
 	{
 		// printf("Se ha encontrado un salto de linea\n");
 		line = ft_substr(*unused_chars, 0, idx);
+		printf("EXT - NEW_LINE: %s €€", newline_pos);
 		temp = ft_strdup(newline_pos);
 		// printf("Se ha sacado la línea: %s\n", line);
 		free_memory(unused_chars);
@@ -86,8 +91,13 @@ char *extract_line_from_unused_chars(char **unused_chars)
 	else
 	{
 		// line = ft_strdup(*unused_chars);
-		return (NULL);
-		free_memory(unused_chars);
+		if (ft_strlen(*unused_chars) > 0)
+			return (*unused_chars);
+		else
+		{
+			return (NULL);
+			free_memory(unused_chars);
+		}
 	}
 	// printf("Se ha salido de extraer una linea\n");
 	return (line);
@@ -103,6 +113,7 @@ char *get_next_line(int fd)
 		return (NULL);
 	if (!unused_chars)
 		unused_chars = ft_strdup("");
+	// printf("GNL - Unused vale: %d", *unused_chars);
 	if (!read_line(fd, &unused_chars))
 	{
 		free_memory(&unused_chars);
