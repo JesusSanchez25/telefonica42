@@ -13,8 +13,7 @@ OBJ = $(SRC:.c=.o)
 
 # Compilador y flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-#-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 # Reglas principales
 all: $(NAME)
@@ -32,7 +31,6 @@ $(MAIN_EXEC): $(MAIN_SRC) $(SRC) $(MAIN_SRC) $(BUFFER_SIZE)
 # Ejecutar el programa principal
 run: $(MAIN_EXEC)
 	./$(MAIN_EXEC)
-
 # Limpieza de archivos objeto
 clean:
 	rm -f $(OBJ) $(MAIN_EXEC)
