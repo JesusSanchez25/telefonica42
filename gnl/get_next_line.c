@@ -64,6 +64,7 @@ char	*get_unusedchars_line(char *unused_chars)
 	idx = newline_pos - unused_chars;
 	if (newline_pos == NULL)
 		return (NULL);
+	// printf("€1:%s€\n", ft_substr(unused_chars, 0, idx));
 	return (ft_substr(unused_chars, 0, idx));
 }
 
@@ -91,19 +92,20 @@ char	*get_next_line(int fd)
 	if(ft_strrchr(unused_chars, '\n') != NULL)
 	{
 		line = get_unusedchars_line(unused_chars);
-		printf("$1:%s$\n", unused_chars);
+		// printf("€1:%s€\n", line);
+		// printf("$1:%s$\n", unused_chars);
 		unused_chars = ft_substr(unused_chars, ft_strlen(line) + 2, ft_strlen(unused_chars));
-		printf("$2:%s$\n", unused_chars);
+		// printf("$2:%s$\n", unused_chars);
 		return (line);
 	}
 
 	line = read_line(line, fd);
-	// if (line == NULL)
-	// {
-	// 	free_memory(&unused_chars);
-	// 	free_memory(&line);
-	// 	return (NULL);
-	// }
+	if (line == NULL)
+	{
+		free_memory(&unused_chars);
+		free_memory(&line);
+		return (NULL);
+	}
 	char *temp_line = line;
 	line = ft_strjoin(unused_chars, temp_line);
 	free_memory(&temp_line);

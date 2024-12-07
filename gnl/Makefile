@@ -27,7 +27,7 @@ $(BUFFER_SIZE):
 
 # Crear el ejecutable para pruebas
 $(MAIN_EXEC): $(MAIN_SRC) $(SRC) $(MAIN_SRC) $(BUFFER_SIZE)
-	$(CC) $(CFLAGS) -D BUFFER_SIZE=$(BUFFER_SIZE) $(SRC) $(HEADER) $(MAIN_SRC) -o $(MAIN_EXEC)
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=$(BUFFER_SIZE) $(SRC) $(MAIN_SRC) -o $(MAIN_EXEC)
 
 # Ejecutar el programa principal
 run: $(MAIN_EXEC)
