@@ -39,9 +39,6 @@ int	print_pointer(va_list args)
 int	print_cases(char sym, va_list args)
 {
 	int		printed_chars;
-	char	*str;
-	int		c;
-	int		num;
 
 	printed_chars = 0;
 	if (sym == 's')
