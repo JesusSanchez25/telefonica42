@@ -49,7 +49,8 @@ int	main(void)
 	// printf("%s", get_next_line(fd));
 	// printf("%s", get_next_line(fd));
 	char *newline = get_next_line(fd);
-	while(newline != NULL){
+	while(newline){
+		// printf("COmo me gusta bailar la macarena");
 		printf("%s", newline);
 		free(newline);
 		newline = get_next_line(fd);
