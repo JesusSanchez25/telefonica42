@@ -75,6 +75,8 @@ char	*ft_strrchr(const char *s, int c)
 
 	i = 0;
 	chr = NULL;
+	if (!s)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)

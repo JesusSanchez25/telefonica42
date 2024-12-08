@@ -46,20 +46,12 @@ int	main(void)
 	// free(line);
 	// return (0);
 	fd = open("texto.txt", O_RDONLY);
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
 	char *newline = get_next_line(fd);
 	while(newline){
-		// printf("COmo me gusta bailar la macarena");
 		printf("%s", newline);
 		free(newline);
 		newline = get_next_line(fd);
 	}
 	free(newline);
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
 	close(fd);
 }
