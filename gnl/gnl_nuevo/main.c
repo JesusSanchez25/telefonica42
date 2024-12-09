@@ -16,13 +16,13 @@
 #include <unistd.h>
 
 // void *test_malloc(size_t size) {
-    // static int fail_count = 0;  // Controla cuándo fallar
-    // fail_count++;
-    // if (fail_count % 8 == 0) {  // Simula fallo cada 3 llamadas
-    //     printf("Simulated malloc failure\n");
-    //     return NULL;
-    // }
-//     return malloc(size);
+// static int fail_count = 0;  // Controla cuándo fallar
+// fail_count++;
+// if (fail_count % 8 == 0) {  // Simula fallo cada 3 llamadas
+//     printf("Simulated malloc failure\n");
+//     return (NULL);
+// }
+//     return (malloc(size));
 // }
 
 // void *malloc(size_t size) {
@@ -30,10 +30,10 @@
 //     fail_count++;
 //     if (fail_count % 3 == 0) {  // Simula fallo cada 3 llamadas
 //         printf("Simulated malloc failure\n");
-//         return NULL;
+//         return (NULL);
 //     }
 //     void *(*original_malloc)(size_t) = dlsym(RTLD_NEXT, "malloc");
-//     return original_malloc(size);
+//     return (original_malloc(size));
 // }
 
 int	main(void)

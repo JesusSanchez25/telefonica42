@@ -21,13 +21,6 @@ void	*free_memory(char **str)
 	return (NULL);
 }
 
-int	check_things(char *buffer)
-{
-	if (BUFFER_SIZE < 1 || !buffer)
-		return (-1);
-	return (1);
-}
-
 char	*read_line(int fd, char **unused_chars)
 {
 	char	*buffer;
@@ -35,31 +28,22 @@ char	*read_line(int fd, char **unused_chars)
 	ssize_t	bytes_read;
 
 	buffer = malloc(BUFFER_SIZE + 1);
-	// COMPRUEBA SI EL PROBLEMA ES CUANDO NO HAY BUFFER
-	// if (!buffer)
-	// {
-	// 	free_memory(unused_chars);
-	// 	return (NULL);
-	// }
-
 	while (!ft_strrchr(*unused_chars, '\n') && buffer)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == 0)
-		{
-			free_memory(&buffer);
-			return (*unused_chars);
-		}
+			break ;
 		if (bytes_read <= -1)
 		{
-			free_memory(unused_chars);
-			break ;
+			free_memory(&buffer);
+			return (free_memory(unused_chars));
 		}
 		buffer[bytes_read] = '\0';
 		temp = *unused_chars;
 		*unused_chars = ft_strjoin(temp, buffer);
+		if (!*unused_chars)
+			free_memory(&buffer);
 		free_memory(&temp);
-
 	}
 	free_memory(&buffer);
 	return (*unused_chars);
@@ -75,6 +59,8 @@ char	*extract_line_from_unused_chars(char **unused_chars)
 	if (linebreak_pos)
 	{
 		line = ft_substr(*unused_chars, 0, linebreak_pos - *unused_chars + 1);
+		if (!line)
+			return (free_memory(unused_chars));
 		temp = ft_strdup(linebreak_pos + 1);
 		free_memory(unused_chars);
 		*unused_chars = temp;
@@ -87,9 +73,7 @@ char	*extract_line_from_unused_chars(char **unused_chars)
 			free_memory(unused_chars);
 		}
 		else
-		{
 			return (free_memory(unused_chars));
-		}
 	}
 	return (line);
 }
@@ -101,7 +85,7 @@ char	*get_next_line(int fd)
 
 	if (!unused_chars)
 		unused_chars = ft_strdup("");
-	if (check_things(unused_chars) < 0)
+	if (BUFFER_SIZE < 1 || !unused_chars)
 		return (NULL);
 	if (!read_line(fd, &unused_chars))
 	{
