@@ -28,12 +28,12 @@ char	*read_line(int fd, char **unused_chars)
 	ssize_t	bytes_read;
 
 	buffer = malloc(BUFFER_SIZE + 1);
-	while (!ft_strrchr(*unused_chars, '\n') && buffer)
+	while (!ft_strrchr(*unused_chars, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == 0)
 			break ;
-		if (bytes_read <= -1)
+		if (bytes_read <= -1 || !buffer)
 		{
 			free_memory(&buffer);
 			return (free_memory(unused_chars));
